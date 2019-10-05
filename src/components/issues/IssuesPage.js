@@ -5,38 +5,19 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 
 class IssuesPage extends React.Component {
-  state = {
-    issue: {
-      title: ""
-    }
-  };
-
-  handleChange = event => {
-    const issue = { ...this.state.issue, title: event.target.value };
-    this.setState({ issue });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.actions.createIssue(this.state.issue);
-  };
-
+  componentDidMount() {
+    this.props.actions.loadIssues().catch(error => {
+      alert("Loading courses failed" + error);
+    });
+  }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <>
         <h2>Issues</h2>
-        <h3>Add Issue</h3>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.issue.title}
-        />
-
-        <input type="submit" value="Save" />
         {this.props.issues.map(issue => (
           <div key={issue.title}>{issue.title}</div>
         ))}
-      </form>
+      </>
     );
   }
 }
