@@ -10,9 +10,9 @@ export function loadIssuesSuccess(issues) {
 }
 
 export function loadIssues() {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     return issueApi
-      .getIssues()
+      .getIssues(getState().token)
       .then(issues => {
         dispatch(loadIssuesSuccess(issues));
       })
