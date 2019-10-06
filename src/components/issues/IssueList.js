@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const IssueList = ({ issues }) => (
+const IssueList = ({ issues, closing = false, onCloseClick }) => (
   <table className="table">
     <thead>
       <tr>
@@ -11,6 +11,7 @@ const IssueList = ({ issues }) => (
         <th>Labels</th>
         <th>Assignee</th>
         <th>State</th>
+        <th />
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,15 @@ const IssueList = ({ issues }) => (
             <td>{issue.labels.map(label => label.name)}</td>
             <td>{issue.assignee.login}</td>
             <td>{issue.state}</td>
+            <td>
+              <button
+                className="btn btn-outline-danger"
+                disabled={closing}
+                onClick={() => onCloseClick(issue)}
+              >
+                {closing ? "Close..." : "Close"}
+              </button>
+            </td>
           </tr>
         );
       })}
@@ -36,7 +46,9 @@ const IssueList = ({ issues }) => (
 );
 
 IssueList.propTypes = {
-  issues: PropTypes.array.isRequired
+  issues: PropTypes.array.isRequired,
+  onCloseClick: PropTypes.func.isRequired,
+  closing: PropTypes.bool
 };
 
 export default IssueList;

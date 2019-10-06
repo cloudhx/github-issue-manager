@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import IssueList from "./IssueList";
 import Spinner from "../common/Spinner";
+import { toast } from "react-toastify";
 
 class IssuesPage extends React.Component {
   componentDidMount() {
@@ -17,14 +18,26 @@ class IssuesPage extends React.Component {
     }
   }
 
+  handleClose = async issue => {
+    toast.success("Issue closed.");
+    try {
+      await this.props.actions.closeIssue(issue);
+    } catch (error) {
+      toast.error("Close failed. " + error.message, { autoClose: false });
+    }
+  };
+
   render() {
     return (
       <>
-        <h2>Issues</h2>
+        <h2>Open Issues</h2>
         {this.props.loading ? (
           <Spinner />
         ) : (
-          <IssueList issues={this.props.issues} />
+          <IssueList
+            issues={this.props.issues}
+            onCloseClick={this.handleClose}
+          />
         )}
       </>
     );
@@ -48,7 +61,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(issueActions, dispatch)
+    actions: {
+      loadIssues: bindActionCreators(issueActions.loadIssues, dispatch),
+      closeIssue: bindActionCreators(issueActions.closeIssue, dispatch)
+    }
   };
 }
 
