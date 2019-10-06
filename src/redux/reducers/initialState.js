@@ -1,4 +1,5 @@
 export default {
   issues: [],
-  token: ""
+  token: "",
+  user: {}
 };

@@ -1,3 +1,4 @@
 export const CREATE_ISSUE = "CREATE_ISSUE";
 export const LOAD_ISSUES_SUCCESS = "LOAD_ISSUES_SUCCESS";
 export const SAVE_TOKEN = "SAVE_TOKEN";
+export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
