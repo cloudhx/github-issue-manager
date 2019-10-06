@@ -4,6 +4,7 @@ import * as issueActions from "../../redux/actions/issueActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import IssueList from "./IssueList";
+import Spinner from "../common/Spinner";
 
 class IssuesPage extends React.Component {
   componentDidMount() {
@@ -20,7 +21,11 @@ class IssuesPage extends React.Component {
     return (
       <>
         <h2>Issues</h2>
-        <IssueList issues={this.props.issues} />
+        {this.props.loading ? (
+          <Spinner />
+        ) : (
+          <IssueList issues={this.props.issues} />
+        )}
       </>
     );
   }
@@ -28,12 +33,16 @@ class IssuesPage extends React.Component {
 
 IssuesPage.propTypes = {
   issues: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    issues: state.issues
+    issues: state.issues,
+    user: state.user,
+    loading: state.apiCallsInProgress > 0
   };
 }
 

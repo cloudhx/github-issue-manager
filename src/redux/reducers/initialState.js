@@ -1,5 +1,6 @@
 export default {
   issues: [],
   token: "",
-  user: {}
+  user: {},
+  apiCallsInProgress: 0
 };

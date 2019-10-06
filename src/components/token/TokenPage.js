@@ -4,10 +4,12 @@ import { saveToken } from "../../redux/actions/tokenActions";
 import { loadUser } from "../../redux/actions/userActions";
 import PropTypes from "prop-types";
 import TokenForm from "./TokenForm";
+import { toast } from "react-toastify";
 
 function TokenPage({ user, saveToken, loadUser, history, ...props }) {
   const [token, setToken] = useState(props.token);
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -18,11 +20,16 @@ function TokenPage({ user, saveToken, loadUser, history, ...props }) {
 
   function handleSave(event) {
     event.preventDefault();
+    setSaving(true);
     saveToken(token);
-    loadUser().catch(error => {
-      alert("Loading authors failed" + error);
-    });
-    history.push("/issues");
+    loadUser()
+      .then(() => {
+        toast.success("App authorized.");
+        history.push("/issues");
+      })
+      .catch(error => {
+        alert("Loading user failed" + error);
+      });
   }
 
   return (
@@ -31,6 +38,7 @@ function TokenPage({ user, saveToken, loadUser, history, ...props }) {
       errors={errors}
       onChange={handleChange}
       onSave={handleSave}
+      saving={saving}
     />
   );
 }
