@@ -11,7 +11,7 @@ class IssuesPage extends React.Component {
 
     if (issues.length === 0) {
       actions.loadIssues().catch(error => {
-        alert("Loading courses failed" + error);
+        alert("Loading issues failed" + error);
       });
     }
   }

@@ -36,7 +36,7 @@ const IssueList = ({ issues }) => (
 );
 
 IssueList.propTypes = {
-  courses: PropTypes.array.isRequired
+  issues: PropTypes.array.isRequired
 };
 
 export default IssueList;

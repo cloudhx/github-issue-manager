@@ -5,6 +5,7 @@ import IssuesPage from "./issues/IssuesPage";
 import AboutPage from "./about/AboutPage";
 import Header from "./common/Header";
 import PageNotFound from "./PageNotFound";
+import TokenPage from "./token/TokenPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/issues" component={IssuesPage} />
+        <Route path="/token" component={TokenPage} />
         <Route component={PageNotFound} />
       </Switch>
     </div>
