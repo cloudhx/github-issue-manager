@@ -22,7 +22,7 @@ const TokenForm = ({
         label="token"
         value={token}
         onChange={onChange}
-        error={errors.title}
+        error={errors.token}
       />
 
       <button type="submit" disabled={saving} className="btn btn-primary">

@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { saveToken } from "../../redux/actions/tokenActions";
+import { saveToken, removeToken } from "../../redux/actions/tokenActions";
 import { loadUser } from "../../redux/actions/userActions";
 import PropTypes from "prop-types";
 import TokenForm from "./TokenForm";
 import { toast } from "react-toastify";
 
-function TokenPage({ user, saveToken, loadUser, history, ...props }) {
+function TokenPage({
+  user,
+  saveToken,
+  removeToken,
+  loadUser,
+  history,
+  ...props
+}) {
   const [token, setToken] = useState(props.token);
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {}, []);
 
   function handleChange(event) {
     const { value } = event.target;
@@ -20,6 +25,7 @@ function TokenPage({ user, saveToken, loadUser, history, ...props }) {
 
   function handleSave(event) {
     event.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
     saveToken(token);
     loadUser()
@@ -28,8 +34,20 @@ function TokenPage({ user, saveToken, loadUser, history, ...props }) {
         history.push("/issues");
       })
       .catch(error => {
-        alert("Loading user failed" + error);
+        setSaving(false);
+        removeToken();
+        setErrors({ onSave: error.message });
       });
+  }
+
+  function formIsValid() {
+    const errors = {};
+
+    if (!token) errors.token = "Personal access token is required.";
+
+    setErrors(errors);
+    // Form is valid if the errors object still has no properties
+    return Object.keys(errors).length === 0;
   }
 
   return (
@@ -46,6 +64,7 @@ function TokenPage({ user, saveToken, loadUser, history, ...props }) {
 TokenPage.propTypes = {
   token: PropTypes.string.isRequired,
   saveToken: PropTypes.func.isRequired,
+  removeToken: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
@@ -61,6 +80,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   saveToken,
+  removeToken,
   loadUser
 };
 
