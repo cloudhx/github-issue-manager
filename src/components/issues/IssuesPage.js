@@ -3,20 +3,24 @@ import { connect } from "react-redux";
 import * as issueActions from "../../redux/actions/issueActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import IssueList from "./IssueList";
 
 class IssuesPage extends React.Component {
   componentDidMount() {
-    this.props.actions.loadIssues().catch(error => {
-      alert("Loading courses failed" + error);
-    });
+    const { issues, actions } = this.props;
+
+    if (issues.length === 0) {
+      actions.loadIssues().catch(error => {
+        alert("Loading courses failed" + error);
+      });
+    }
   }
+
   render() {
     return (
       <>
         <h2>Issues</h2>
-        {this.props.issues.map(issue => (
-          <div key={issue.title}>{issue.title}</div>
-        ))}
+        <IssueList issues={this.props.issues} />
       </>
     );
   }

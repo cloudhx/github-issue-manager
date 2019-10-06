@@ -1,6 +1,7 @@
 import * as types from "../actions/actionTypes";
+import initialState from "./initialState";
 
-export default function issueReducer(state = [], action) {
+export default function issueReducer(state = initialState.issues, action) {
   switch (action.type) {
     case types.CREATE_ISSUE:
       return [...state, { ...action.issue }];
