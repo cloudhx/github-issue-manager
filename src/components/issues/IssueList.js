@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
-const IssueList = ({ issues, closing = false, onCloseClick }) => (
+const IssueList = ({ issues, onCloseClick }) => (
   <table className="table">
     <thead>
       <tr>
-        <th />
         <th>Title</th>
         <th>Labels</th>
         <th>Assignee</th>
@@ -19,23 +17,30 @@ const IssueList = ({ issues, closing = false, onCloseClick }) => (
         return (
           <tr key={issue.id}>
             <td>
-              <a className="btn btn-light" href={issue.html_url}>
-                Watch
+              <a
+                href={issue.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {issue.title}
               </a>
             </td>
             <td>
-              <Link to={"/issue/" + issue.number}>{issue.title}</Link>
+              {issue.labels.map(label => (
+                <>
+                  <span class="badge badge-primary">{label.name}</span>
+                  <span> </span>
+                </>
+              ))}
             </td>
-            <td>{issue.labels.map(label => label.name)}</td>
             <td>{issue.assignee.login}</td>
             <td>{issue.state}</td>
             <td>
               <button
                 className="btn btn-outline-danger"
-                disabled={closing}
                 onClick={() => onCloseClick(issue)}
               >
-                {closing ? "Close..." : "Close"}
+                Close
               </button>
             </td>
           </tr>
@@ -47,8 +52,7 @@ const IssueList = ({ issues, closing = false, onCloseClick }) => (
 
 IssueList.propTypes = {
   issues: PropTypes.array.isRequired,
-  onCloseClick: PropTypes.func.isRequired,
-  closing: PropTypes.bool
+  onCloseClick: PropTypes.func.isRequired
 };
 
 export default IssueList;
