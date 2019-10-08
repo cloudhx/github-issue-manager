@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import TokenForm from "./TokenForm";
 import { toast } from "react-toastify";
 
-function TokenPage({
+export function TokenPage({
   user,
   saveToken,
   removeToken,
