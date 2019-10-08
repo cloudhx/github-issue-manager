@@ -27,6 +27,12 @@ class IssuesPage extends React.Component {
     }
   };
 
+  handleRefresh = () => {
+    this.props.actions.loadIssues().catch(error => {
+      alert("Loading issues failed" + error);
+    });
+  };
+
   render() {
     return (
       <>
@@ -37,6 +43,7 @@ class IssuesPage extends React.Component {
           <IssueList
             issues={this.props.issues}
             onCloseClick={this.handleClose}
+            onRefreshClick={this.handleRefresh}
           />
         )}
       </>
