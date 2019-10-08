@@ -9,7 +9,8 @@ function renderIssueList(args) {
   let defaultProps = {
     issues: [],
     closing: false,
-    onCloseClick: () => {}
+    onCloseClick: () => {},
+    onRefreshClick: () => {}
   };
   const props = { ...defaultProps, ...args };
   return render(
