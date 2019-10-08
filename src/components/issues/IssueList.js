@@ -27,10 +27,10 @@ const IssueList = ({ issues, onCloseClick }) => (
             </td>
             <td>
               {issue.labels.map(label => (
-                <>
-                  <span class="badge badge-primary">{label.name}</span>
+                <React.Fragment key={label.id}>
+                  <span className="badge badge-primary">{label.name}</span>
                   <span> </span>
-                </>
+                </React.Fragment>
               ))}
             </td>
             <td>{issue.assignee.login}</td>

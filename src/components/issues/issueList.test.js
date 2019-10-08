@@ -21,7 +21,7 @@ function renderIssueList(args) {
 
 test("lists all issues", () => {
   const { getAllByText } = renderIssueList({
-    issues: issues
+    issues
   });
 
   expect(getAllByText(/close/i)).toHaveLength(issues.length);
