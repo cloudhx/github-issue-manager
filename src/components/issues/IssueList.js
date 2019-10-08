@@ -11,6 +11,8 @@ const IssueList = ({ issues, onCloseClick, onRefreshClick }) => (
         <tr>
           <th>Title</th>
           <th>Labels</th>
+          <th>Repository</th>
+          <th>Created</th>
           <th>Assignee</th>
           <th>State</th>
           <th />
@@ -37,6 +39,8 @@ const IssueList = ({ issues, onCloseClick, onRefreshClick }) => (
                   </React.Fragment>
                 ))}
               </td>
+              <td>{issue.repository.full_name}</td>
+              <td>{new Date(issue.created_at).toLocaleString()}</td>
               <td>{issue.assignee.login}</td>
               <td>{issue.state}</td>
               <td>
