@@ -2,7 +2,7 @@ import * as tokenActions from "./tokenActions";
 import * as types from "./actionTypes";
 import { token } from "../../tools/mockData";
 
-describe("tests token actions", () => {
+describe("Tests Token Actions", () => {
   it("tests SAVE_TOKEN action", () => {
     //arrange
     const expectedAction = {

@@ -298,7 +298,7 @@ const issues = [
     events_url:
       "https://api.github.com/repos/octocat/Hello-World/issues/1347/events",
     html_url: "https://github.com/octocat/Hello-World/issues/1347",
-    number: 1347,
+    number: 1348,
     state: "open",
     title: "Found a bug",
     body: "I'm having a problem with this.",

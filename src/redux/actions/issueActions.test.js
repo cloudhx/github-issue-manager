@@ -9,7 +9,32 @@ import configureMockStore from "redux-mock-store";
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe("tests issue actions", () => {
+describe("Tests Async Actions", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  describe("Load Issues Thunk", () => {
+    it("creates BEGIN_API_CALL and LOAD_ISSUES_SUCCESS when loading issues", () => {
+      fetchMock.mock("*", {
+        body: issues,
+        headers: { "content-type": "application/json" }
+      });
+
+      const expectedActions = [
+        { type: types.BEGIN_API_CALL },
+        { type: types.LOAD_ISSUES_SUCCESS, issues }
+      ];
+
+      const store = mockStore({ issues: [] });
+      return store.dispatch(issueActions.loadIssues()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+});
+
+describe("Tests Issue Actions", () => {
   it("tests LOAD_ISSUES_SUCCESS action", () => {
     //arrange
     const expectedAction = {
