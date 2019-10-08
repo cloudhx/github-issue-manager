@@ -5,13 +5,14 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import IssueList from "./IssueList";
 import Spinner from "../common/Spinner";
+import SignIn from "../common/SignIn";
 import { toast } from "react-toastify";
 
 class IssuesPage extends React.Component {
   componentDidMount() {
-    const { issues, actions } = this.props;
+    const { issues, user, actions } = this.props;
 
-    if (issues.length === 0) {
+    if (typeof user.login !== "undefined" && issues.length === 0) {
       actions.loadIssues().catch(error => {
         alert("Loading issues failed" + error);
       });
@@ -37,7 +38,9 @@ class IssuesPage extends React.Component {
     return (
       <>
         <h2>Open Issues</h2>
-        {this.props.loading ? (
+        {typeof this.props.user.login === "undefined" ? (
+          <SignIn />
+        ) : this.props.loading ? (
           <Spinner />
         ) : (
           <IssueList
