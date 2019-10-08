@@ -575,6 +575,9 @@ const issues = [
   }
 ];
 
+const token = "FAKE_PERSONAL_ACCESS_TOKEN";
+
 module.exports = {
-  issues
+  issues,
+  token
 };
