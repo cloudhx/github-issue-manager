@@ -28,7 +28,7 @@ const IssueList = ({ issues, onCloseClick }) => (
             <td>
               {issue.labels.map(label => (
                 <>
-                  <span class="badge badge-primary">{label.name}</span>
+                  <span className="badge badge-primary">{label.name}</span>
                   <span> </span>
                 </>
               ))}
