@@ -20,10 +20,10 @@ function renderIssueList(args) {
 }
 
 test("lists all issues", () => {
-  const { getAllByText, debug } = renderIssueList({
+  const { getAllByText } = renderIssueList({
     issues
   });
-  debug();
+
   expect(getAllByText(/close/i)).toHaveLength(issues.length);
   // just like a manual tester, we'll instruct our test to wait for the alert
   // to show up before continuing with our assertions.
