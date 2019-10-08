@@ -6,21 +6,21 @@ it("removes issue when passed CLOSE_ISSUE_OPTIMISTIC", () => {
   const initialState = [
     {
       title: "Issue 1",
-      number: 1
+      id: 1
     },
     {
       title: "Issue 2",
-      number: 2
+      id: 2
     },
     {
       title: "Issue 3",
-      number: 3
+      id: 3
     }
   ];
 
   const closedIssue = {
     title: "Issue 2",
-    number: 2
+    id: 2
   };
 
   const action = actions.closeIssueOptimistic(closedIssue);

@@ -7,10 +7,10 @@ export default function issueReducer(state = initialState.issues, action) {
       return [...state, { ...action.issue }];
     case types.EDIT_ISSUE_SUCCESS:
       return state.map(issue =>
-        issue.number === action.issue.number ? action.issue : issue
+        issue.id === action.issue.id ? action.issue : issue
       );
     case types.CLOSE_ISSUE_OPTIMISTIC:
-      return state.filter(issue => issue.number !== action.issue.number);
+      return state.filter(issue => issue.id !== action.issue.id);
     case types.LOAD_ISSUES_SUCCESS:
       return action.issues;
     default:
