@@ -1,3 +1,22 @@
+## GitHub Issue Manager [![Build Status](https://travis-ci.com/cloudhx/github-issue-manager.svg?branch=master)](https://travis-ci.com/cloudhx/github-issue-manager)
+
+
+The production build of this application is hosted on Heroku at https://github-issue-manager.herokuapp.com
+
+### Work log
+Find different types of work log from below list
+- GitHub issues were used during the application test phase, starting from creating test plan until the application was released. Find details here from [GitHub Issues](https://github.com/cloudhx/github-issue-manager/issues)
+- Find initial analysis, design and task breakdown in [notion](https://www.notion.so/Nordsense-code-challenge-69adb6b92d2b4eafaa967967ba42550c), it also includes a kanban board in the page.
+
+### Design Justisfication
+The bare minimum requirements for the GitHub Issue Manager can be implemented without using Redux. Instead, the app can use React lift state and React context to share data across different parts of the components.
+With Redux, the app can demonstrate more practice of React development and set up a better foundation for an imaginary bigger scenario.
+
+### Token Exposure
+Two early commits contain tokens used as a quick and dirty test on the GitHub API when the token UI feature was not ready. Those exposed tokens have been revoked and removed from the code. 
+
+
+## Initial readme from Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
