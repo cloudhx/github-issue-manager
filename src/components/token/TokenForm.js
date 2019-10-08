@@ -19,14 +19,14 @@ const TokenForm = ({
       )}
       <TextInput
         name="token"
-        label="token"
+        label="Personal Access Token"
         value={token}
         onChange={onChange}
         error={errors.token}
       />
 
       <button type="submit" disabled={saving} className="btn btn-primary">
-        {saving ? "Validating..." : "Save"}
+        {saving ? "Authorizing..." : "Authorize"}
       </button>
     </form>
   );

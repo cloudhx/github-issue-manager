@@ -16,19 +16,19 @@ function renderTokenForm(args) {
   return render(<TokenForm {...props} />);
 }
 
-test('labels save button as "Save" when not saving', () => {
+test('labels button as "Authorize" when not saving', () => {
   const { getByText } = renderTokenForm();
-  getByText("Save").closest("button");
+  getByText("Authorize").closest("button");
 });
 
-test('labels save button as "Validating..." when saving', () => {
+test('labels button as "Authorizing..." when saving', () => {
   const { getByText } = renderTokenForm({ saving: true });
-  getByText("Validating...").closest("button");
+  getByText("Authorizing...").closest("button");
 });
 
-test("disables save button when saving", () => {
+test("disables button when saving", () => {
   const { getByText } = renderTokenForm({ saving: true });
-  expect(getByText("Validating...").closest("button")).toHaveAttribute(
+  expect(getByText("Authorizing...").closest("button")).toHaveAttribute(
     "disabled"
   );
 });
